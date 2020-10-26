@@ -1,8 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `OPML Notes Demo`,
+    titleTemplate: `%s - OPML Notes Demo`,
+    description: `Site generated from Little Outliner OPML`,
+    author: `Andrew Shell`,
+    twitterUsername: `@andrewshell`,
+    siteUrl: 'http://localhost:8000',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -27,8 +30,20 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-opmlnote`,
+      options: {
+        url: `http://storage.shll.me:1229/users/andrewshell/electric/hello.opml`,
+        name: 'posts',
+        timezone: 'America/Chicago'
+      }
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: []
+      }
+    },
+    'gatsby-source-instance-name-for-remark',
   ],
 }

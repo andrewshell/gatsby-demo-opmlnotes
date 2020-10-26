@@ -16,10 +16,10 @@ export default function IndexPage({data}) {
             <div>{day.notes.map(post => {
               return (
                 <article className="h-entry" key={ `${post.fields.date}/${post.fields.slug}` }>
-                  <div className="e-content" dangerouslySetInnerHTML={{ __html: post.html }} />
-                  <footer>
+                  <div className="p-name e-content" dangerouslySetInnerHTML={{ __html: post.html }} />
+                  <div className="text-xs">
                     Published <Link to={ `/${post.fields.date}/${post.fields.slug}` } className="u-url u-uid"><time className="dt-published" datetime="{ post.frontmatter.created }">{ post.frontmatter.created }</time></Link>
-                  </footer>
+                  </div>
                 </article>
               );
             })}</div>
@@ -43,9 +43,9 @@ export default function IndexPage({data}) {
   );
 }
 
-export const query = graphql`query AllPostsQuery{
+export const query = graphql`query DayPostsQuery($date: Date!) {
   allMarkdownRemark(
-    filter: { fields: { sourceInstanceName: { eq: "posts" } } },
+    filter: { fields: { sourceInstanceName: { eq: "posts" }, date: { eq: $date } } },
     sort: {fields: [frontmatter___created], order: DESC}
   ) {
     edges {
