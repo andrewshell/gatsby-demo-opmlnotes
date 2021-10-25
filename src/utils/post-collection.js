@@ -2,7 +2,7 @@ import * as dayjs from 'dayjs';
 
 export default function postCollection(nodes) {
     return nodes.reduce((days, { node }) => {
-        const created = dayjs(node.frontmatter.created),
+        const created = dayjs(node.frontmatter.created.slice(0,10)),
             date = created.format('dddd, MMMM D, YYYY');
 
         let dateidx = days.findIndex(day => day.date === node.fields.date);
