@@ -3,7 +3,7 @@ const dayjs = require('dayjs'),
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    let created = dayjs(node.frontmatter.created),
+    let created = dayjs(node.frontmatter.created.slice(0,10)),
       timeid = 'a' + created.format('HHmmss'),
       slug = (node.frontmatter || {}).slug || (node.frontmatter.title === '' ? timeid : slugify(node.frontmatter.title)),
       date = created.format('YYYY-MM-DD');
