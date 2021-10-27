@@ -33,7 +33,7 @@ module.exports = {
     {
       resolve: `gatsby-source-opmlnote`,
       options: {
-        url: `http://storage.shll.me:1229/users/andrewshell/electric/hello.opml`,
+        url: `http://lo2.geekity.com/andrewshell/electric/hello.opml`,
         name: 'posts',
         timezone: 'America/Chicago'
       }
