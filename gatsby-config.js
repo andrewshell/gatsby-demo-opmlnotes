@@ -44,6 +44,5 @@ module.exports = {
         plugins: []
       }
     },
-    'gatsby-source-instance-name-for-remark',
   ],
 }
