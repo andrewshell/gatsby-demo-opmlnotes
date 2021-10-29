@@ -7,6 +7,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       timeid = 'a' + created.format('HHmmss'),
       slug = (node.frontmatter || {}).slug || (node.frontmatter.title === '' ? timeid : slugify(node.frontmatter.title)),
       date = created.format('YYYY-MM-DD');
+      
+    // does the work of gatsby-source-instance-name-for-remark
+    const fileNode = getNode(node.parent)
+    actions.createNodeField({
+      node,
+      name: "sourceInstanceName",
+      value: fileNode.sourceInstanceName,
+    })
 
     actions.createNodeField({
       node,
